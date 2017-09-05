@@ -1,0 +1,106 @@
+⁠<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
+
+var bitCoin   =   {"id":"bitcoin", "count":"0.00509862"}
+var moneroCoin =  {"id":"monero", "count":"10"}
+var rippleCoin = {"id":"ripple", "count":"24909"}
+var litecoinCoin = {"id":"litecoin", "count":"16"}
+var dogecoinCoin = {"id":"dogecoin", "count":"1047349"}
+var byteCoin = {"id":"bytecoin-bcn", "count":"506223"}
+var digibyteCoin = {"id":"digibyte", "count":"201166"}
+var liskCoin  = {"id":"lisk", "count":"644"}
+var reddCoin  = {"id":"reddcoin", "count":"1032145"}
+var waveCoin  = {"id":"waves", "count":"1079"}
+var digitalNoteCoin = {"id": "digitalnote" , "count" : "518933"}
+var espersCoin = {"id": "espers" , "count" : "1002990"}
+var mintcoinCoin = {"id": "mintcoin" , "count" : "1037919"}
+var mooncoinCoin = {"id": "mooncoin" , "count" : "6376909"}
+var vergeCoin = {"id" :"verge" , "count" : "105555"}
+var zeitcoin = {"id" :"zeitcoin" , "count" : "1741453"}
+var siaCoin  = {"id" :"siacoin" , "count" : "24951"}
+var fedoracoin = {"id": "fedoracoin" , "count" : "10004950"}
+var _1337Coin  = {"id": "1337" , "count" : "1425714"}
+var allSafeCoin = {"id": "allsafe" , "count" : "101796000"}
+var cagecoinCoin = {"id": "cagecoin" , "count" : "11547487"}
+var popularCoin  = {"id": "popularcoin" , "count" : "1085059"}
+
+var btc_prise = 0.0
+
+var coinsArray = new Array(
+    bitCoin,moneroCoin,rippleCoin,
+    litecoinCoin,dogecoinCoin,byteCoin,
+    digibyteCoin,liskCoin,reddCoin,
+    waveCoin,digitalNoteCoin,espersCoin,
+    mintcoinCoin,vergeCoin,zeitcoin,
+    siaCoin, fedoracoin, _1337Coin,
+     cagecoinCoin, popularCoin
+    );
+ $(document).ready(function(){
+   var index = 0 ;var usdSum = 0.0; var inrSum = 0.0  
+for (index = 0; index < coinsArray.length; ++index) {
+    var api_url = "https://api.coinmarketcap.com/v1/ticker/"+coinsArray[index].id+"/?convert=INR"
+       $.ajax({url: api_url, success: function(result){
+        usdSum = usdSum +  parseFloat(result[0].price_usd) *  parseFloat(coinsArray[index].count)    
+        inrSum = inrSum +  parseFloat(result[0].price_inr) *  parseFloat(coinsArray[index].count)  
+      //alert(api_url + " usdSum : "+ usdSum + " inrSum :" + inrSum + "Coin : "+ coinsArray[index].id + " INR : " +
+      // parseFloat(result[0].price_inr))
+   if(coinsArray[index].id == "bitcoin"){
+        btc_prise = parseFloat(result[0].price_usd)
+    }
+  
+    }, failure: function(result){
+		alert('failed');
+            $("#div1").html(result);
+        }
+       ,async: false
+        });    
+ }
+  // Check claculate #BTC
+
+ var displayStr = "Rs : "  + parseInt(inrSum) + "<br/> " + "USD : " + parseInt(usdSum);
+ var no_btc = "#BTC : " + usdSum/btc_prise
+  $("#div1").html(displayStr);  
+ $("#div2").html(no_btc);  
+ 
+});
+</script>
+</head>
+<body>
+
+<div  class="w3-container w3-light-grey" style="border:none; height:200px; width: 550px;" scrolling='no' frameborder='0' allowTransparency='true'>
+     <div  id="div1" style="font-size:50px;"></div>
+ </div>
+
+<div  class="w3-container w3-blue-grey" style="border:none; height:200px; width: 550px;" scrolling='no' frameborder='0' allowTransparency='true'>
+     <div  id="div2" style="font-size:50px;"></div>
+</div>
+
+
+
+<a href="https://www.coingecko.com/en/price_charts/bitcoin/inr" target="_blank"><img alt="bitcoin price" src="https://www.coingecko.com/en/widget_component/ticker/bitcoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/monero/inr" target="_blank"><img alt="monero price" src="https://www.coingecko.com/en/widget_component/ticker/monero/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/litecoin/inr" target="_blank"><img alt="litecoin price" src="https://www.coingecko.com/en/widget_component/ticker/litecoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/ripple/inr" target="_blank"><img alt="ripple price" src="https://www.coingecko.com/en/widget_component/ticker/ripple/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/dogecoin/inr" target="_blank"><img alt="dogecoin price" src="https://www.coingecko.com/en/widget_component/ticker/dogecoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/bytecoin/inr" target="_blank"><img alt="bytecoin price" src="https://www.coingecko.com/en/widget_component/ticker/bytecoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/digibyte/inr" target="_blank"><img alt="digibyte price" src="https://www.coingecko.com/en/widget_component/ticker/digibyte/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/lisk/inr" target="_blank"><img alt="lisk price" src="https://www.coingecko.com/en/widget_component/ticker/lisk/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/reddcoin/inr" target="_blank"><img alt="reddcoin price" src="https://www.coingecko.com/en/widget_component/ticker/reddcoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/waves/inr" target="_blank"><img alt="waves price" src="https://www.coingecko.com/en/widget_component/ticker/waves/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/digitalnote/inr" target="_blank"><img alt="digitalnote price" src="https://www.coingecko.com/en/widget_component/ticker/digitalnote/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/siacoin/inr" target="_blank"><img alt="siacoin price" src="https://www.coingecko.com/en/widget_component/ticker/siacoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/espers/inr" target="_blank"><img alt="espers price" src="https://www.coingecko.com/en/widget_component/ticker/espers/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/mintcoin/inr" target="_blank"><img alt="mintcoin price" src="https://www.coingecko.com/en/widget_component/ticker/mintcoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/mooncoin/inr" target="_blank"><img alt="mooncoin price" src="https://www.coingecko.com/en/widget_component/ticker/mooncoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/verge/inr" target="_blank"><img alt="verge price" src="https://www.coingecko.com/en/widget_component/ticker/verge/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/zeitcoin/inr" target="_blank"><img alt="zeitcoin price" src="https://www.coingecko.com/en/widget_component/ticker/zeitcoin/inr.jpg"></a>
+<a href="https://www.coingecko.com/en/price_charts/fedoracoin/inr" target="_blank"><img alt="fedoracoin price" src="https://www.coingecko.com/en/widget_component/ticker/fedoracoin/inr.jpg"></a>
+
+</body>
+</html>
+
